@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Tools Evaluation Chart</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 900px;
+      height: 900px;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid #0ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #0ff;
+      backdrop-filter: blur(6px);
+      animation: pulse 4s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    .criteria {
+      position: absolute;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.08);
+      border: 1px solid #0ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 10px;
+      color: #0ff;
+      backdrop-filter: blur(4px);
+      animation: pulseCriteria 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseCriteria {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    /* Keploy logo bottom-right */
+    .logo {
+      position: fixed;
+      bottom: 20px;
+      margin-right: 290px;
+      margin-bottom: 60px;
+      right: 20px;
+      width: 120px; /* adjust size */
+      opacity: 0.9;
+    }
+    .logo:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <div class="center">Evaluation<br>Criteria</div>
+
+    <div class="criteria">Use Cases</div>
+    <div class="criteria">Pricing</div>
+    <div class="criteria">Speed</div>
+    <div class="criteria">Trends</div>
+    <div class="criteria">Personal Experience</div>
+    <div class="criteria">Documentation</div>
+    <div class="criteria">Context Awareness</div>
+    <div class="criteria">Efficiency & Performance</div>
+    <div class="criteria">Bug Handling</div>
+  </div>
+
+
+  <img src="/keploy-logo.png" alt="Keploy Logo" class="logo">
+
+  <script>
+    // Dynamically position criteria in circular layout
+    const criteria = document.querySelectorAll(".criteria");
+    const container = document.querySelector(".chart-container");
+    const centerX = container.offsetWidth / 2;
+    const centerY = container.offsetHeight / 2;
+    const radius = 320; // distance from center
+
+    criteria.forEach((el, i) => {
+      const angle = (i / criteria.length) * (2 * Math.PI); // equal spacing
+      const x = centerX + radius * Math.cos(angle) - el.offsetWidth / 2;
+      const y = centerY + radius * Math.sin(angle) - el.offsetHeight / 2;
+      el.style.left = `${x}px`;
+      el.style.top = `${y}px`;
+    });
+  </script>
+</body>
+</html>
